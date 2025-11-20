@@ -4,7 +4,6 @@ import * as React from "react"
 import {
   AudioWaveform,
   BookOpen,
-  Calendar,
   Command,
   GalleryVerticalEnd,
   Home,
@@ -52,7 +51,7 @@ const data = {
   projects: [
     {
       name: "Home",
-      url: "/home",
+      url: "/",
       icon: Home,
     },
     {

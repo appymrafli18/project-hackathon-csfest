@@ -1,10 +1,10 @@
-import DashboardLayout from "@/layouts/DashbaordLayout"
+import MainLayout from "@/layouts/MainLayout"
 
 const Assignments = () => {
   return (
-    <DashboardLayout>
+    <MainLayout>
         assingments
-    </DashboardLayout>
+    </MainLayout>
   )
 }
 

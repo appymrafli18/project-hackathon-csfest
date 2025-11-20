@@ -1,5 +1,3 @@
-// src/layouts/DashboardLayout.tsx
-
 import { AppSidebar } from "@/components/app-sidebar"
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"
 import type { ReactNode } from "react"
@@ -15,7 +13,7 @@ type Props = {
   children: ReactNode
 }
 
-export default function DashboardLayout({ children }: Props) {
+export default function MainLayout({ children }: Props) {
   return (
     <SidebarProvider>
       <AppSidebar />
