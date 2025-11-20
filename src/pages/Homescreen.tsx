@@ -1,7 +1,7 @@
-const Homescreen = () => {
-  return (
-    <div>Homescreen</div>
-  )
-}
+  const Homescreen = () => {
+    return (
+      <div>Homescreen</div>
+    )
+  }
 
-export default Homescreen
+  export default Homescreen
