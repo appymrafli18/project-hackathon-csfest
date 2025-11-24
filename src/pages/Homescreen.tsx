@@ -1,6 +1,7 @@
-import AnnouncementBar from "@/components/annountcment-bar"
+import AnnouncementBar from "@/components/announcment-bar"
 import { AppSidebar } from "@/components/app-sidebar"
 import AssignmentCards from "@/components/assignment-cards"
+import CourseCategory from "@/components/course-category"
 import { JadwalKuliah } from "@/components/jadwal-kuliah"
 import {
   SidebarInset,
@@ -14,9 +15,8 @@ const Homescreen = () => {
       <SidebarInset>
         <header className="p-4">
           <AnnouncementBar
-            title="ANNOUNCEMENTS"
+            actionLabel="ANNOUNCEMENTS"
             message="Ada pergantian jadwal mata kuliah teknologi multimedia pada tanggal 25 September 2023 menjadi pukul 13.20 - 16.55."
-            onClick={() => console.log("Clicked!")}
           />
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
@@ -28,7 +28,7 @@ const Homescreen = () => {
           <div className="bg-muted/50 h-fit rounded-xl col-span-3 p-5 border">
             <JadwalKuliah />
           </div>
-          <div className="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min" />
+          <CourseCategory />
         </div>
       </SidebarInset>
     </SidebarProvider>

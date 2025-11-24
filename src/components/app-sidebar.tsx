@@ -4,11 +4,11 @@ import * as React from "react"
 import {
   AudioWaveform,
   BookOpen,
+  Calendar,
   Command,
   GalleryVerticalEnd,
   Home,
   Map,
-  PenBox,
 } from "lucide-react"
 
 import { NavProjects } from "@/components/nav-projects"
@@ -55,33 +55,33 @@ const data = {
       icon: Home,
     },
     {
-      name: "Assignments",
-      url: "/assignments",
-      icon: PenBox,
-    },
-    {
       name: "My Courses",
       url: "/courses",
       icon: BookOpen,
       isActive: true,
       items: [
         {
-          title: "Alpro",
-          url: "/assignments",
+          title: "Bahasa Inggris untuk TI",
+          url: "/my-course/1",
         },
         {
           title: "Bindo",
-          url: "/assignments",
+          url: "/my-course/2",
         },
         {
           title: "MTK",
-          url: "/assignments",
+          url: "/my-course/3",
         },
         {
           title: "PTIK",
-          url: "/assignments",
+          url: "/my-course/3",
         },
       ],
+    },
+    {
+      name: "Events",
+      url: "/events",
+      icon: Calendar,
     },
   ],
 }
@@ -94,10 +94,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
+              className="data-[slot=sidebar-menu-button]:p-1.5"
             >
               <a href="#">
-                <Map className="!size-5" />
+                <Map className="size-5" />
                 <span className="text-base font-semibold">Acme Inc.</span>
               </a>
             </SidebarMenuButton>
