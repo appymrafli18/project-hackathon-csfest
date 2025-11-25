@@ -1,73 +1,24 @@
-# React + TypeScript + Vite
+# CSFest Campus Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Deskripsi Singkat
+Platform dashboard akademik untuk CSFest yang menyatukan jadwal, tugas, presensi, pengumuman kampus, hingga peminjaman ruang perpustakaan dalam satu aplikasi React + Vite. Fokusnya adalah membantu mahasiswa memantau aktivitas akademik harian dengan antarmuka modern.
 
-Currently, two official plugins are available:
+## Fitur Utama
+- **Dashboard Home:** rangkuman tugas terdekat, jadwal hari ini, daftar mata kuliah aktif, serta CTA validasi presensi.
+- **Manajemen Tugas & Kursus:** halaman detail tugas, daftar course per semester, dan proses enrolment berdasarkan jurusan/prodi.
+- **Pengumuman & Event:** komponen pengumuman kampus, detail event, serta breadcrumb dinamis untuk memudahkan navigasi.
+- **Presensi & Validasi:** utilitas `validateAttendance` yang menyimpan status presensi di `localStorage`.
+- **Fitur Pendukung:** login form, halaman profil mahasiswa, peminjaman ruang perpustakaan, serta komponen UI shadcn yang siap pakai.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- React 19 + TypeScript
+- Vite 7 untuk bundling dan dev server
+- React Router DOM 7 untuk navigasi multi-halaman
+- Tailwind CSS 4 + shadcn/ui + Radix UI primitives
+- ESLint & TypeScript ESLint untuk kualitas kode
 
-## React Compiler
-
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Cara Menjalankan
+1. Instal dependensi: `yarn install` (atau `npm install`).
+2. Buat file `.env` jika diperlukan dan isi variabel yang dibutuhkan fitur tertentu.
+3. Jalankan mode pengembangan: `yarn dev` lalu akses `http://localhost:5173`.
+4. Untuk build produksi: `yarn build` dan pratinjau dengan `yarn preview`.
