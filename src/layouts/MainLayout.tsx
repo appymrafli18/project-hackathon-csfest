@@ -1,7 +1,6 @@
 import { useEffect, type ReactNode } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import Navbar from "@/components/navbar"
-import { jurusanMap, prodiMap } from "@/lib/breadcrumbMap"
 type Props = {
   children: ReactNode
 }

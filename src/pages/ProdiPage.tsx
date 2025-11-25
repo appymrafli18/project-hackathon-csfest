@@ -156,7 +156,7 @@ export default function ProdiPage() {
   const { jurusanId, prodiId } = useParams();
   const navigate = useNavigate();
 
-  const handleSelectCourse = (semester: number, tahun: string, courseId: number) => {
+  const handleSelectCourse = (semester: number, courseId: number) => {
     navigate(`/enroll-course/${jurusanId}/${prodiId}/${semester}/${courseId}`);
   };
   return (
@@ -209,7 +209,6 @@ export default function ProdiPage() {
                                 onClick={() =>
                                   handleSelectCourse(
                                     sem.semester,
-                                    th.kelas,
                                     course.id
                                   )
                                 }

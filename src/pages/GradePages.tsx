@@ -315,7 +315,7 @@ export default function GradesPage() {
                                 </TableHeader>
 
                                 <TableBody>
-                                    {filtered.map((m, idx) => (
+                                    {filtered.map((m, _) => (
                                         <TableRow key={m.id}>
                                             <TableCell className="font-medium">{m.mataKuliah}</TableCell>
 

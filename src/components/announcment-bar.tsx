@@ -2,19 +2,21 @@ import { useState } from "react";
 import { Check, Clock, Megaphone, OctagonAlert, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+interface IType {
+  message: string;
+  actionLabel?: string;
+  type: "info" | "warning" | "success" | "error";
+  onAction?: () => void;
+  loading?: boolean;
+}
+
 export default function AnnouncementBar({
   message,
   actionLabel,
   type,
   onAction,
   loading,
-}: {
-  message: string;
-  actionLabel?: string;
-  type: "info" | "warning" | "success" | "error";
-  onAction?: () => void;
-  loading?: boolean;
-}) {
+}: IType) {
   const [isVisible, setIsVisible] = useState(true);
 
   if (!isVisible) return null;

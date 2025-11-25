@@ -5,7 +5,7 @@ import AssignmentDetail from "./pages/AssignmentDetail";
 import JurusanPage from "./pages/JurusanPage";
 import EnrollCourse from "./pages/EnrollCourse";
 import ProdiPage from "./pages/ProdiPage";
-import NewHomePage from "./pages/NewHomePage";
+import HomePage from "./pages/HomePage";
 import TasksPage from "./pages/TasksPage";
 import AttendancePage from "./pages/AttendancePage";
 import StudentProfile from "./pages/ProfilePage";
@@ -18,7 +18,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<NewHomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/my-course/:courseId" element={<MyCourse />} />
         <Route path="/my-course/:courseId/assignment/:assignmentId" element={<AssignmentDetail />} />
