@@ -1,4 +1,4 @@
-# CSFest Campus Portal
+# ELEARNING REVAMPS
 
 ## Deskripsi Singkat
 Platform dashboard akademik untuk CSFest yang menyatukan jadwal, tugas, presensi, pengumuman kampus, hingga peminjaman ruang perpustakaan dalam satu aplikasi React + Vite. Fokusnya adalah membantu mahasiswa memantau aktivitas akademik harian dengan antarmuka modern.
@@ -21,5 +21,6 @@ Platform dashboard akademik untuk CSFest yang menyatukan jadwal, tugas, presensi
 1. Instal nodejs terlebih dahulu
 2. Instal yarn juga menggunakan terminal `npm install --global yarn`
 3. Instal dependensi: `yarn install` (atau `npm install`).
-4. Jalankan mode pengembangan: `yarn dev` (atau `npm run dev`) lalu akses `http://localhost:5173`.
-5. Untuk build produksi: `yarn build` (atau `npm run build`) dan pratinjau dengan `yarn preview` (atau `npm run preview`).
+4. Tarik proyekan dari `https://github.com/DanarGdg/project-hackathon-csfest-wifichecker`
+5. Jalankan mode pengembangan: `yarn dev` (atau `npm run dev`) lalu akses `http://localhost:5173`.
+6. Untuk build produksi: `yarn build` (atau `npm run build`) dan pratinjau dengan `yarn preview` (atau `npm run preview`).
