@@ -26,7 +26,7 @@ export default function EventsComponent() {
                                 </CardTitle>
                             </CardHeader>
 
-                            <CardContent className="flex-grow">
+                            <CardContent className="grow">
                                 <p className="text-sm text-muted-foreground line-clamp-3">
                                     {event.description}
                                 </p>

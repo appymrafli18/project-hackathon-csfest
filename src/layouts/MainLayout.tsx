@@ -7,7 +7,7 @@ type Props = {
 
 export default function MainLayout({ children }: Props) {
   const navigate = useNavigate()
-
+  
   useEffect(() => {
     const user = localStorage.getItem("user")
     if (!user) {

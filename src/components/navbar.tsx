@@ -101,14 +101,25 @@ export default function Navbar() {
           {/* Profile */}
           <DropdownMenu>
             <DropdownMenuTrigger className="cursor-pointer">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-white"></div>
-                <div className="leading-tight text-sm text-left">
-                  <p className="font-semibold">{user.name}</p>
-                  <p className="text-gray-300 text-xs">{user.nim}</p>
+              {user ?
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-white"></div>
+                  <div className="leading-tight text-sm text-left">
+                    <p className="font-semibold">{user.name}</p>
+                    <p className="text-gray-300 text-xs">{user.nim}</p>
+                  </div>
+                  <ChevronDown size={18} className="text-gray-200" />
                 </div>
-                <ChevronDown size={18} className="text-gray-200" />
-              </div>
+                :
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-white"></div>
+                  <div className="leading-tight text-sm text-left">
+                    <p className="font-semibold">Guest</p>
+                    {/* <p className="text-gray-300 text-xs">{user.nim}</p> */}
+                  </div>
+                  <ChevronDown size={18} className="text-gray-200" />
+                </div>
+              }
             </DropdownMenuTrigger>
 
             <DropdownMenuContent className="w-48 p-1">
@@ -161,16 +172,24 @@ export default function Navbar() {
           <div className="flex items-center gap-3 py-2">
             <div className="w-9 h-9 rounded-full bg-white"></div>
             <div className="leading-tight text-sm">
-              <p className="font-semibold">Farhan Hariri</p>
-              <p className="text-gray-300 text-xs">25741540221</p>
+              {user ?
+                <>
+                  <p className="font-semibold">{user.name}</p>
+                  <p className="text-gray-300 text-xs">{user.nim}</p>
+                </>
+                :
+                <>
+                  <p className="font-semibold">Guest</p>
+                </>
+              }
             </div>
           </div>
 
-          <Link to="/login" className="flex items-center gap-2 py-2 text-red-300">
-            <LogOut size={16} /> Logout
-          </Link>
           <Link to="/profile" className="flex items-center gap-2 py-2">
-              <User size={16} /> Profile
+            <User size={16} /> Profile
+          </Link>
+          <Link to="/library-room-booking" className="flex items-center gap-2 py-2">
+            <Library size={16} /> Sewa ruangan perpustakaan
           </Link>
           <div className="flex items-center gap-2 py-2 text-red-300" onClick={logout}>
             <LogOut size={16} /> Logout
