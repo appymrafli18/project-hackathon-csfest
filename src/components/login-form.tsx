@@ -92,7 +92,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
               )}
 
               <Field>
-                <Button type="submit" className="w-full bg-teal-800">Login</Button>
+                <Button type="submit" className="w-full bg-teal-800 hover:bg-teal-700">Login</Button>
               </Field>
             </FieldGroup>
           </form>

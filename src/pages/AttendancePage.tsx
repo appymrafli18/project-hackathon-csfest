@@ -156,9 +156,6 @@ export default function AttendancePage() {
                 setSemesterFilter(v)
               }}
             />
-            <Button variant="ghost" className="flex items-center gap-2">
-              <Download size={16} /> Export
-            </Button>
           </div>
         </div>
 

@@ -43,7 +43,7 @@ export default function EnrollPage() {
               <label className="text-sm text-gray-600">Enrolment key</label>
               <Input placeholder="Enter enrolment key" className="mt-1" />
 
-              <Button className="mt-4">Enrol me</Button>
+              <Button className="mt-4 bg-teal-800 hover:bg-teal-700">Enrol me</Button>
             </div>
           </CardContent>
         </Card>
