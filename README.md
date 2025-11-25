@@ -18,7 +18,8 @@ Platform dashboard akademik untuk CSFest yang menyatukan jadwal, tugas, presensi
 - ESLint & TypeScript ESLint untuk kualitas kode
 
 ## Cara Menjalankan
-1. Instal dependensi: `yarn install` (atau `npm install`).
-2. Buat file `.env` jika diperlukan dan isi variabel yang dibutuhkan fitur tertentu.
-3. Jalankan mode pengembangan: `yarn dev` lalu akses `http://localhost:5173`.
-4. Untuk build produksi: `yarn build` dan pratinjau dengan `yarn preview`.
+1. Instal nodejs terlebih dahulu
+2. Instal yarn juga menggunakan terminal `npm install --global yarn`
+3. Instal dependensi: `yarn install` (atau `npm install`).
+4. Jalankan mode pengembangan: `yarn dev` (atau `npm run dev`) lalu akses `http://localhost:5173`.
+5. Untuk build produksi: `yarn build` (atau `npm run build`) dan pratinjau dengan `yarn preview` (atau `npm run preview`).
