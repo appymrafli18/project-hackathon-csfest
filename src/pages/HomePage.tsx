@@ -103,7 +103,9 @@ const NewHomePage = () => {
             </div>
           </div>
           <div className="lg:col-span-1 space-y-8">
-            <CourseList />
+            <div className="hidden lg:block">
+              <CourseList />
+            </div>
             <CampusAnnouncements announcements={announcements} />
           </div>
         </div>

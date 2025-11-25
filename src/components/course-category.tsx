@@ -1,6 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Link } from "react-router-dom"
 import { majors } from "@/data/majors"
 
@@ -8,9 +7,6 @@ export default function CourseCategory() {
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">Pilih Jurusan</h1>
-
-      <Input placeholder="Cari jurusan..." className="w-full h-12 rounded-xl" />
-
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {majors.map((major) => (
           <Card

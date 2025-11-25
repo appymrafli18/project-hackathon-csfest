@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Clock, AlertCircle } from "lucide-react";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { Badge } from "./ui/badge";
 
 export interface TaskItem {
   title: string;
@@ -65,33 +66,38 @@ export default function TaskCard({ task }: { task: TaskItem }) {
   const status = useMemo(() => getTimeStatus(task.date), [task.date]);
 
   return (
-    <Card className="flex flex-col md:flex-row md:items-center justify-between p-4 rounded-2xl shadow-sm border">
-      <div className="flex md:items-center gap-4">
-        <div
-          className={`w-14 h-14 rounded-xl flex items-center justify-center ${status.className}`}
-        >
-          <AlertCircle size={26} />
+    <Card className="flex flex-col justify-between p-4 rounded-2xl shadow-sm border">
+      <div className="flex justify-between items-start gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+          <div
+            className={`w-14 h-14 rounded-xl flex items-center justify-center ${status.className}`}
+          >
+            <AlertCircle size={26} />
+          </div>
+
+          <div className="flex flex-col">
+            <h2 className="text-lg font-semibold">{task.title}</h2>
+            <p className="text-sm text-gray-700">{task.matkul}</p>
+
+            <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
+              <Clock size={16} /> {task.date}
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col">
-          <h2 className="text-lg font-semibold">{task.title}</h2>
-          <p className="text-sm text-gray-700">{task.matkul}</p>
-
-          <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
-            <Clock size={16} /> {task.date}
-          </div>
+        <div className="flex flex-col items-end gap-5">
+          <Badge variant={"destructive"} className={`${status.className}`}>{status.label}</Badge>
+          <Link to={"/my-course/1/assignment/1"} className="hidden sm:block">
+            <Button className="bg-teal-800 hover:bg-teal-700 px-6">
+              Submit Task
+            </Button>
+          </Link>
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row md:items-center gap-4">
-        <span
-          className={`${status.className} w-fit px-4 py-1 rounded-full text-sm font-medium`}
-        >
-          {status.label}
-        </span>
-
+      <div className="ml-uto block sm:hidden">
         <Link to={"/my-course/1/assignment/1"}>
-          <Button className="bg-teal-800 hover:bg-teal-700 px-6">
+          <Button className="bg-teal-800 hover:bg-teal-700 px-6 w-full">
             Submit Task
           </Button>
         </Link>

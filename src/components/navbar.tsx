@@ -154,9 +154,7 @@ export default function Navbar() {
         <div className="lg:hidden bg-teal-900 px-4 py-4 space-y-4 animate-in fade-in slide-in-from-top">
           <Link to="/" className="block py-2">Dashboard</Link>
 
-          {/* Simple fallback instead of CourseMegaMenu */}
-          <Link to="/courses" className="block py-2">Mata Kuliah</Link>
-
+          <CourseMegaMenu initialCourses={initialCourses} />
           <Link to="/tasks" className="block py-2">Tugas</Link>
           <Link to="/attendance" className="block py-2">Presensi</Link>
           <Link to="/grade" className="block py-2">Grade</Link>
