@@ -3,9 +3,8 @@ import MainLayout from "@/layouts/MainLayout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Download, Search } from "lucide-react"
+import { Search } from "lucide-react"
 
 type AttendanceStatus = "hadir" | "sakit" | "izin" | "alpha"
 
