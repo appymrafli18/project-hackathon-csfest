@@ -1,3 +1,7 @@
+import { schedule, type DayKey } from "@/data/schedule";
+import { timeToMinutes } from "./utils";
+import { addValidAttendanceToData } from "@/data/attendance";
+
 function isInsideCampus(userLat: number, userLng: number) {
     const kampus = { lat: -6.363, lng: 106.824 };
     const R = 6371e3;
@@ -31,6 +35,31 @@ function isValidTime() {
     return hour >= 7 && hour <= 18;
 }
 
+function getCurrentCourseMessage() {
+    const now = new Date();
+    const day = now
+        .toLocaleDateString("en-US", { weekday: "long" })
+        .toLowerCase() as DayKey;
+
+    const list = schedule[day];
+    if (!list) return null;
+
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+    for (const item of list) {
+        const [start, end] = item.jam.split("-").map(j => j.trim());
+
+        const startMin = timeToMinutes(start.replace(".", ":"));
+        const endMin = timeToMinutes(end.replace(".", ":"));
+
+        if (currentMinutes >= startMin && currentMinutes <= endMin) {
+            return `Presensi anda valid dalam mata kuliah ${item.mataKuliah}`;
+        }
+    }
+
+    return null;
+}
+
 export async function validateAttendance() {
     const position = await new Promise<GeolocationPosition>((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -44,7 +73,19 @@ export async function validateAttendance() {
     const isValidNetwork = await isUsingPNJWifi();
 
     if (isValidLocation && isValidTime() && isValidNetwork) {
-        return { valid: true, message: "Presensi anda valid" };
+        const courseMessage = getCurrentCourseMessage();
+
+        if (courseMessage) {
+            const courseName = courseMessage.replace("Presensi anda valid dalam mata kuliah ", "");
+
+            const today = new Date().toISOString().split("T")[0];
+
+            addValidAttendanceToData(courseName, today, "hadir");
+
+            return { valid: true, message: courseMessage };
+        }
+
+        return { valid: true, message: "Presensi anda valid, namun tidak ada mata kuliah yang sedang berlangsung." };
     }
 
     if (isValidLocation && isValidTime() && !isValidNetwork) {

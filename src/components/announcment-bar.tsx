@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Check, Clock, Megaphone, OctagonAlert, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "./ui/spinner";
 
 interface IType {
   message: string;
@@ -27,7 +28,7 @@ export default function AnnouncementBar({
       ${type === "info" ? "border-l-blue-500 bg-blue-50" : ""}
       ${type === "error" ? "border-l-red-500 bg-red-50" : ""}
       ${type === "warning" ? "border-l-[#F59E0B] bg-yellow-50" : ""}
-      ${type === "success" ? "border-l-green-500 bg-green-50" : "" }`}
+      ${type === "success" ? "border-l-green-500 bg-green-50" : ""}`}
     >
       {/* Left Section */}
       <div className="flex items-center gap-3">
@@ -47,6 +48,9 @@ export default function AnnouncementBar({
           className="bg-teal-800 hover:bg-teal-900 text-white rounded-lg px-4 py-2"
         >
           {actionLabel}
+          {loading &&
+            <Spinner />
+          }
         </Button>
       ) : (
         <button

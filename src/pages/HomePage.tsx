@@ -3,7 +3,7 @@ import CampusAnnouncements from "@/components/campus-announcements"
 import CourseCategory from "@/components/course-category"
 import { CourseList } from "@/components/course-list"
 import EventsComponent from "@/components/event-component"
-import JadwalHariIni from "@/components/jadwal-kuliah-hari-ini"
+import TodayShedule from "@/components/today-shedule"
 import TaskCard, { type TaskItem } from "@/components/task-card"
 import { Button } from "@/components/ui/button"
 import { announcements } from "@/data/announcment"
@@ -59,8 +59,9 @@ const NewHomePage = () => {
 
     localStorage.setItem("attendanceStatus", JSON.stringify(result));
     setAttendanceStatus(result);
+
     setLoading(false);
-  }  
+  }
 
   return (
     <MainLayout>
@@ -86,7 +87,7 @@ const NewHomePage = () => {
                 task={tasks[0]}
               />
             </div>
-            <JadwalHariIni />
+            <TodayShedule />
             <div className="space-y-4">
               <h1 className="text-xl font-semibold">
                 Tugas yang belum selesai
@@ -107,7 +108,7 @@ const NewHomePage = () => {
           </div>
         </div>
         <CourseCategory />
-        <EventsComponent/>
+        <EventsComponent />
       </div>
     </MainLayout >
   )

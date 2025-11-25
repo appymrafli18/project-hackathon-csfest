@@ -5,76 +5,8 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
 import { Search } from "lucide-react"
+import { attendanceData, type AttendanceStatus } from "@/data/attendance"
 
-type AttendanceStatus = "hadir" | "sakit" | "izin" | "alpha"
-
-type WeekAttendance = {
-  week: number // 1..16
-  date?: string // ISO string when presensi happened
-  status?: AttendanceStatus
-}
-
-type CourseAttendance = {
-  id: string
-  kode: string
-  nama: string
-  kelas: string
-  semester: number
-  tahun: string
-  weeks: WeekAttendance[] // length up to 16
-}
-
-// ---------- DUMMY DATA ----------
-const dummyData: CourseAttendance[] = [
-  {
-    id: "c1",
-    kode: "PW101",
-    nama: "Pemrograman Web",
-    kelas: "TKJ 2A",
-    semester: 2,
-    tahun: "2024",
-    weeks: [
-      { week: 1, date: "2024-08-25", status: "hadir" },
-      { week: 2, date: "2024-09-01", status: "hadir" },
-      { week: 3, date: "2024-09-08", status: "izin" },
-      { week: 4, date: "2024-09-15", status: "hadir" },
-      { week: 5, date: "2024-09-22", status: "alpha" },
-      { week: 6, date: "2024-09-29", status: "sakit" },
-      // ... add until week 16 if you want
-    ],
-  },
-  {
-    id: "c2",
-    kode: "BD202",
-    nama: "Basis Data",
-    kelas: "TKJ 2A",
-    semester: 2,
-    tahun: "2024",
-    weeks: [
-      { week: 1, date: "2024-08-25", status: "hadir" },
-      { week: 2, date: "2024-09-01", status: "hadir" },
-      { week: 3, date: "2024-09-08", status: "hadir" },
-      { week: 4, date: "2024-09-15", status: "hadir" },
-      { week: 5, date: "2024-09-22", status: "hadir" },
-    ],
-  },
-  {
-    id: "c3",
-    kode: "JK303",
-    nama: "Jaringan Komputer",
-    kelas: "TKJ 2A",
-    semester: 3,
-    tahun: "2025",
-    weeks: [
-      { week: 1, date: "2025-02-10", status: "hadir" },
-      { week: 2, date: "2025-02-17", status: "sakit" },
-      { week: 3, date: "2025-02-24", status: "izin" },
-    ],
-  },
-  // additional dummy courses...
-]
-
-// ---------- HELPERS ----------
 function statusLabel(s?: AttendanceStatus) {
   if (!s) return "Belum"
   if (s === "hadir") return "Hadir"
@@ -113,13 +45,13 @@ export default function AttendancePage() {
 
   // generate list of semesters available from data
   const semesters = useMemo(() => {
-    const s = Array.from(new Set(dummyData.map((c) => c.semester))).sort((a, b) => a - b)
+    const s = Array.from(new Set(attendanceData.map((c) => c.semester))).sort((a, b) => a - b)
     return s
   }, [])
 
   // filtered courses
   const filteredCourses = useMemo(() => {
-    return dummyData.filter((c) => {
+    return attendanceData.filter((c) => {
       if (semesterFilter !== "all" && c.semester !== semesterFilter) return false
       if (search.trim() === "") return true
       const q = search.toLowerCase()
@@ -132,13 +64,13 @@ export default function AttendancePage() {
   }, [semesterFilter, search])
 
   const selectedCourse = useMemo(
-    () => dummyData.find((c) => c.id === selectedCourseId) ?? filteredCourses[0] ?? null,
+    () => attendanceData.find((c) => c.id === selectedCourseId) ?? filteredCourses[0] ?? null,
     [selectedCourseId, filteredCourses]
   )
 
   return (
     <MainLayout>
-      <div className="max-w-6xl mx-auto p-6 space-y-6">
+      <div className="space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between gap-4">
           <div>
@@ -158,7 +90,7 @@ export default function AttendancePage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-[320px_1fr] gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
           {/* Sidebar: Courses */}
           <aside>
             <Card className="mb-3">

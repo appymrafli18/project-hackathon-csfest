@@ -18,6 +18,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { useNavigate } from "react-router-dom"
 import { validateAttendance } from "@/lib/validateAttendance"
+import { Spinner } from "./ui/spinner"
 
 export function LoginForm({ className, ...props }: React.ComponentProps<"div">) {
   const navigate = useNavigate()
@@ -25,8 +26,8 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
   const [email, setEmail] = useState("student@example.com")
   const [password, setPassword] = useState("123456")
   const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
-  // Hardcoded user (karena tanpa backend)
   const mockUser = {
     email: "student@example.com",
     password: "123456",
@@ -37,11 +38,13 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     if (email === mockUser.email && password === mockUser.password) {
+      setLoading(true);
       localStorage.setItem("user", JSON.stringify(mockUser))
 
       const result = await validateAttendance()
       localStorage.setItem("attendanceStatus", JSON.stringify(result));
 
+      setLoading(false);
       navigate("/")
     } else {
       setError("Email atau password salah.")
@@ -92,7 +95,12 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
               )}
 
               <Field>
-                <Button type="submit" className="w-full bg-teal-800 hover:bg-teal-700">Login</Button>
+                <Button type="submit" className="w-full bg-teal-800 hover:bg-teal-700" disabled={loading}>
+                  Login
+                  {loading &&
+                    <Spinner />
+                  }
+                </Button>
               </Field>
             </FieldGroup>
           </form>

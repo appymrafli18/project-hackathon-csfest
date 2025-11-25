@@ -12,3 +12,8 @@ export const formatTanggal = (d: string) =>
     month: "long",
     year: "numeric"
   });
+
+export function timeToMinutes(t: string) {
+    const [h, m] = t.replace(" ", "").split(":").map(Number);
+    return h * 60 + m;
+}
