@@ -13,6 +13,7 @@ import AnnouncementDetailPage from "./pages/AnnouncementDetailPage";
 import GradesPage from "./pages/GradePages";
 import EventDetailPage from "./pages/EventDetailPage";
 import LibraryRoomBooking from "./pages/LibraryRoomBooking";
+import NotFoundPage from "./pages/NotFount";
 
 function App() {
   return (
@@ -25,13 +26,14 @@ function App() {
         <Route path="/enroll-course/:jurusanId" element={<JurusanPage />} />
         <Route path="/enroll-course/:jurusanId/:prodiId" element={<ProdiPage />} />
         <Route path="/enroll-course/:jurusanId/:prodiId/:semId/:courseId" element={<EnrollCourse />} />
-        <Route path="/tasks" element={<TasksPage />}/>
-        <Route path="/attendance" element={<AttendancePage />}/>
-        <Route path="/grade" element={<GradesPage />}/>
-        <Route path="/profile" element={<StudentProfile />}/>
-        <Route path="/campus-announcment/:id" element={<AnnouncementDetailPage />}/>
-        <Route path="/event/:id" element={<EventDetailPage />}/>
-        <Route path="/library-room-booking" element={<LibraryRoomBooking />}/>
+        <Route path="/tasks" element={<TasksPage />} />
+        <Route path="/attendance" element={<AttendancePage />} />
+        <Route path="/grade" element={<GradesPage />} />
+        <Route path="/profile" element={<StudentProfile />} />
+        <Route path="/campus-announcment/:id" element={<AnnouncementDetailPage />} />
+        <Route path="/event/:id" element={<EventDetailPage />} />
+        <Route path="/library-room-booking" element={<LibraryRoomBooking />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );

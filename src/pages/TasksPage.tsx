@@ -79,7 +79,7 @@ export default function TasksPage() {
                     </Select>
 
                     {/* Filter Status */}
-                    <Select onValueChange={setFilterStatus} defaultValue="all">
+                    <Select onValueChange={setFilterStatus} defaultValue="pending">
                         <SelectTrigger className="w-full md:w-1/2">
                             <SelectValue placeholder="Filter berdasarkan status" />
                         </SelectTrigger>

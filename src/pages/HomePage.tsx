@@ -12,6 +12,16 @@ import { validateAttendance as runValidateAttendance } from "@/lib/validateAtten
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog"
+
 const NewHomePage = () => {
   const tasks: TaskItem[] = [
     {
@@ -39,6 +49,9 @@ const NewHomePage = () => {
   const [attendanceStatus, setAttendanceStatus] = useState<AttendanceStatus | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogMessage, setDialogMessage] = useState("");
+
   useEffect(() => {
     fetchAttendanceStatus();
   }, []);
@@ -48,7 +61,6 @@ const NewHomePage = () => {
 
     if (data) {
       const status: AttendanceStatus = JSON.parse(data);
-
       setAttendanceStatus(status);
     }
   }
@@ -59,6 +71,9 @@ const NewHomePage = () => {
 
     localStorage.setItem("attendanceStatus", JSON.stringify(result));
     setAttendanceStatus(result);
+
+    setDialogMessage(result.message);
+    setDialogOpen(true);
 
     setLoading(false);
   }
@@ -75,33 +90,34 @@ const NewHomePage = () => {
               onAction={!attendanceStatus?.valid ? handleValidateAttendance : undefined}
               loading={loading}
             />
+
             <AnnouncementBar
               message="Ada pergantian jadwal mata kuliah teknologi multimedia pada tanggal 25 September 2023 menjadi pukul 13.20 - 16.55."
               type="info"
             />
+
             <div className="space-y-4">
-              <h1 className="text-xl font-semibold">
-                Tugas Deadline Terdekat
-              </h1>
-              <TaskCard
-                task={tasks[0]}
-              />
+              <h1 className="text-xl font-semibold">Tugas Deadline Terdekat</h1>
+              <TaskCard task={tasks[0]} />
             </div>
+
             <TodayShedule />
+
             <div className="space-y-4">
-              <h1 className="text-xl font-semibold">
-                Tugas yang belum selesai
-              </h1>
+              <h1 className="text-xl font-semibold">Tugas yang belum selesai</h1>
               <div>
                 {tasks.slice(1).map((task, i) => (
                   <TaskCard key={i} task={task} />
                 ))}
               </div>
               <Link to={"/tasks"}>
-                <Button className="mt-4 bg-teal-800 text-white hover:bg-teal-900 px-6">Lihat Semua Tugas</Button>
+                <Button className="mt-4 bg-teal-800 text-white hover:bg-teal-900 px-6">
+                  Lihat Semua Tugas
+                </Button>
               </Link>
             </div>
           </div>
+
           <div className="lg:col-span-1 space-y-8">
             <div className="hidden lg:block">
               <CourseList />
@@ -109,10 +125,29 @@ const NewHomePage = () => {
             <CampusAnnouncements announcements={announcements} />
           </div>
         </div>
+
         <CourseCategory />
         <EventsComponent />
       </div>
-    </MainLayout >
+
+      <AlertDialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              {attendanceStatus?.valid ? "Presensi Valid" : "Presensi Tidak Valid"}
+            </AlertDialogTitle>
+
+            <AlertDialogDescription>
+              {dialogMessage}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+
+          <AlertDialogFooter>
+            <AlertDialogAction className="bg-teal-800 hover:bg-teal-700">Tutup</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </MainLayout>
   )
 }
 
