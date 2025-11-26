@@ -4,45 +4,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import MainLayout from "@/layouts/MainLayout";
+import { assignments } from "@/data/assignment";
+import { courses } from "@/data/schedule";
+import { Badge } from "@/components/ui/badge";
 
 export default function TasksPage() {
     const navigate = useNavigate();
 
-    const assignments = [
-        {
-            id: 1,
-            matkul: "Pemrograman Web",
-            judul: "Membuat Landing Page",
-            deadline: "2025-02-08T23:59:00",
-            status: "pending",
-        },
-        {
-            id: 2,
-            matkul: "Basis Data",
-            judul: "Normalisasi Tabel",
-            deadline: "2025-02-02T23:59:00",
-            status: "overdue",
-        },
-        {
-            id: 3,
-            matkul: "Jaringan Komputer",
-            judul: "Konfigurasi Router Static",
-            deadline: "2025-02-12T23:59:00",
-            status: "completed",
-        },
-        {
-            id: 4,
-            matkul: "Pemrograman Web",
-            judul: "Authentication JWT",
-            deadline: "2025-02-20T23:59:00",
-            status: "pending",
-        },
-    ];
-
     const [filterMatkul, setFilterMatkul] = useState("all");
     const [filterStatus, setFilterStatus] = useState("pending");
-
-    const matkulList = ["Pemrograman Web", "Basis Data", "Jaringan Komputer"];
 
     const filteredAssignments = assignments.filter((item) => {
         return (
@@ -59,7 +29,7 @@ export default function TasksPage() {
 
     return (
         <MainLayout>
-            <div className="max-w-3xl mx-auto p-4 space-y-6">
+            <div className="max-w-3xl mx-auto space-y-6">
 
                 <h1 className="text-2xl font-bold">Daftar Tugas</h1>
 
@@ -72,8 +42,8 @@ export default function TasksPage() {
                         </SelectTrigger>
                         <SelectContent>
                             <SelectItem value="all">Semua Mata Kuliah</SelectItem>
-                            {matkulList.map((m, i) => (
-                                <SelectItem value={m} key={i}>{m}</SelectItem>
+                            {courses.map((course) => (
+                                <SelectItem value={course.title} key={course.id}>{course.title}</SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
@@ -94,31 +64,54 @@ export default function TasksPage() {
 
                 {/* Assignment List */}
                 <div className="space-y-4">
+                    {/* Empty State */}
+                    {filteredAssignments.length === 0 && (
+                        <div className="flex flex-col items-center text-center py-12 text-gray-500">
+                            <img
+                                src="https://cdn-icons-png.flaticon.com/512/4076/4076500.png"
+                                alt="no tasks"
+                                className="w-28 h-28 opacity-80 mb-4"
+                            />
+                            <h2 className="text-lg font-semibold">Tidak ada tugas yang ditemukan</h2>
+                            <p className="text-sm mt-1 max-w-xs">
+                                Coba ubah filter mata kuliah atau status untuk melihat tugas lainnya.
+                            </p>
+
+                            <Button
+                                variant="outline"
+                                className="mt-4"
+                                onClick={() => {
+                                    setFilterMatkul("all");
+                                    setFilterStatus("all");
+                                }}
+                            >
+                                Reset Filter
+                            </Button>
+                        </div>
+                    )}
+
                     {filteredAssignments.map((task) => (
                         <Card key={task.id} className="shadow-sm border rounded-xl">
-                            <CardContent className="p-4 flex flex-col gap-3">
-
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <p className="font-semibold text-lg">{task.judul}</p>
-                                        <p className="text-sm text-gray-500">{task.matkul}</p>
-                                        <p className="text-xs text-gray-400 mt-1">
-                                            Deadline: {new Date(task.deadline).toLocaleString()}
-                                        </p>
-                                    </div>
-
-                                    {/* Status badge */}
-                                    <span className={`text-xs px-3 py-1 rounded-full ${badgeColor(task.status)}`}>
+                            <CardContent className="flex flex-col gap-3">
+                                <div className="flex justify-between items-start flex-col sm:flex-row gap-2.5">
+                                    <Badge className={`sm:order-last ml-au text-xs px-3 py-1 rounded-full ${badgeColor(task.status)}`}>
                                         {task.status === "pending" && "Belum Dikerjakan"}
                                         {task.status === "completed" && "Sudah Dikerjakan"}
                                         {task.status === "overdue" && "Lewat Deadline"}
-                                    </span>
+                                    </Badge>
+                                    <div className="">
+                                        <p className="font-semibold text-lg">{task.title}</p>
+                                        <p className="text-sm text-gray-500">{task.matkul}</p>
+                                        <p className="text-xs text-gray-400 mt-1">
+                                            Deadline: {new Date(task.date).toLocaleString()}
+                                        </p>
+                                    </div>
                                 </div>
 
                                 {/* Submit Button */}
                                 <Button
                                     className="w-fit mt-2 bg-teal-700 hover:bg-teal-800"
-                                    onClick={() => navigate(`/my-course/1/assignment/${task.id}`)}
+                                    onClick={() => navigate(`/my-course/${task.matkulid}/assignment/${task.id}`)}
                                 >
                                     {task.status === "completed" ? "Lihat Tugas" : "Kerjakan Tugas"}
                                 </Button>

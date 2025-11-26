@@ -1,5 +1,3 @@
-"use client"
-
 import { FileText, FileSpreadsheet, File as FileIcon, FileArchive, FileCode } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Link, useParams } from "react-router-dom"

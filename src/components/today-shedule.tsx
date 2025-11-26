@@ -1,5 +1,3 @@
-"use client";
-
 import { Card } from "@/components/ui/card";
 import { Clock, User, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";

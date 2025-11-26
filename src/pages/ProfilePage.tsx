@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
-import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Download, Plus, CheckSquare, X, User } from "lucide-react"
 import { format } from "date-fns"
 
@@ -200,10 +199,6 @@ export default function StudentProfile() {
                             <p className="text-sm text-muted-foreground">{account.email}</p>
                             <p className="text-sm text-muted-foreground">NIM: <span className="font-medium">{account.nim}</span></p>
                         </div>
-
-                        <div className="flex gap-2">
-                            <LinkToProfileEdit />
-                        </div>
                     </CardContent>
                 </Card>
 
@@ -248,7 +243,7 @@ export default function StudentProfile() {
                             </div>
 
                             <div className="md:col-span-3 flex justify-end gap-2 mt-2">
-                                <Button type="submit" className="flex items-center gap-2" disabled={isSubmitting}>
+                                <Button type="submit" className="flex items-center gap-2 bg-teal-800 hover:bg-teal-700" disabled={isSubmitting}>
                                     <Plus size={14} /> Ajukan Surat
                                 </Button>
                             </div>
@@ -345,24 +340,5 @@ export default function StudentProfile() {
                 </Card>
             </div>
         </MainLayout>
-    )
-}
-
-/* small helper component for editing profile (placeholder) */
-function LinkToProfileEdit() {
-    return (
-        <Dialog>
-            <DialogTrigger asChild>
-                <Button variant="outline">Edit Profil</Button>
-            </DialogTrigger>
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>Edit Profil (dummy)</DialogTitle>
-                </DialogHeader>
-                <div className="py-4">
-                    <p className="text-sm text-muted-foreground">Ini hanya contoh. Integrasikan dengan API jika perlu.</p>
-                </div>
-            </DialogContent>
-        </Dialog>
     )
 }

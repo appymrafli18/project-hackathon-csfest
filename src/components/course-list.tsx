@@ -1,5 +1,3 @@
-"use client"
-
 import { GraduationCap } from "lucide-react"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
 import { Link } from "react-router-dom";
@@ -18,7 +16,6 @@ export const initialCourses: Course[] = [
   { id: "6", name: "TI-Sistem Operasi-TI 1" },
   { id: "7", name: "TI-Pengantar Teknologi Informasi & Komunikasi" },
   { id: "8", name: "TI-Algoritma & Pemrograman-TI 1" },
-  { id: "9", name: "GUGUS 42 - GUNUNG SOPUTAN" },
   { id: "10", name: "TI-Etika Profesi & Hukum Siber" },
 ];
 

@@ -6,12 +6,13 @@ import { Link } from "react-router-dom";
 import { Badge } from "./ui/badge";
 
 export interface TaskItem {
+  id: number
   title: string;
   matkul: string;
-  date: string; // tanggal deadline, harus bisa diparse oleh new Date()
+  matkulid: number;
+  date: string;
 }
 
-// --- HITUNG WAKTU TERSISA ---
 function getTimeStatus(deadline: string) {
   const target = new Date(deadline).getTime();
   const now = Date.now();
@@ -29,7 +30,6 @@ function getTimeStatus(deadline: string) {
   const hour = Math.floor(min / 60);
   const day = Math.floor(hour / 24);
 
-  // ≤ 24 jam → tampilkan jam-menit-detik
   if (hour < 24) {
     const h = hour;
     const m = min % 60;
@@ -46,7 +46,6 @@ function getTimeStatus(deadline: string) {
     };
   }
 
-  // ≤ 72 jam → H-x
   if (hour <= 72) {
     const h = Math.ceil(hour / 24);
     return {
@@ -55,7 +54,6 @@ function getTimeStatus(deadline: string) {
     };
   }
 
-  // > 72 jam → x hari lagi
   return {
     label: `${day} hari lagi`,
     className: "bg-green-100 text-green-700",
@@ -87,7 +85,7 @@ export default function TaskCard({ task }: { task: TaskItem }) {
 
         <div className="flex flex-col items-end gap-5">
           <Badge variant={"destructive"} className={`${status.className}`}>{status.label}</Badge>
-          <Link to={"/my-course/1/assignment/1"} className="hidden sm:block">
+          <Link to={`/my-course/${task.matkulid}/assignment/${task.id}`} className="hidden sm:block">
             <Button className="bg-teal-800 hover:bg-teal-700 px-6">
               Submit Task
             </Button>
@@ -96,7 +94,7 @@ export default function TaskCard({ task }: { task: TaskItem }) {
       </div>
 
       <div className="ml-uto block sm:hidden">
-        <Link to={"/my-course/1/assignment/1"}>
+        <Link to={`/my-course/${task.matkulid}/assignment/${task.id}`}>
           <Button className="bg-teal-800 hover:bg-teal-700 px-6 w-full">
             Submit Task
           </Button>

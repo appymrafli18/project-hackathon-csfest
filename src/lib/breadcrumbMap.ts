@@ -64,3 +64,15 @@ export const prodiMap: Record<string, Record<string, string>> = {
     "4": "D4 Desain Grafis",
   },
 };
+
+export const courseMap: Record<string, string> = {
+  "1": "TI-Bahasa Inggris untuk TIK 1",
+  "2": "TI-Teknologi Multimedia-TI 1",
+  "3": "TI-Matematika Diskrit-TI 1",
+  "4": "TI-Bahasa Indonesia-TI 1",
+  "5": "TI-Organisasi & Arsitektur Komputer",
+  "6": "TI-Sistem Operasi-TI 1",
+  "7": "TI-Pengantar Teknologi Informasi & Komunikasi",
+  "8": "TI-Algoritma & Pemrograman-TI 1",
+  "10": "TI-Etika Profesi & Hukum Siber",
+}

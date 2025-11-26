@@ -72,13 +72,13 @@ export default function AttendancePage() {
     <MainLayout>
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex sm:items-center justify-between flex-col sm:flex-row gap-4">
           <div>
             <h1 className="text-2xl font-bold">Presensi Mahasiswa</h1>
             <p className="text-sm text-muted-foreground">Lihat riwayat kehadiran per mata kuliah dan per minggu.</p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 w-ful">
             <SelectWrapper
               semesters={semesters}
               value={semesterFilter}
@@ -93,9 +93,9 @@ export default function AttendancePage() {
         <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
           {/* Sidebar: Courses */}
           <aside>
-            <Card className="mb-3">
+            <Card className="mb-3 gap-0">
               <CardHeader>
-                <CardTitle className="text-sm">Matakuliah</CardTitle>
+                <CardTitle className="text-sm">Mata Kuliah</CardTitle>
               </CardHeader>
               <CardContent className="p-3">
                 <div className="flex items-center gap-2 mb-3">
@@ -117,10 +117,10 @@ export default function AttendancePage() {
                       <button
                         key={c.id}
                         onClick={() => setSelectedCourseId(c.id)}
-                        className={`w-full text-left p-3 rounded-md flex items-center justify-between gap-2 hover:bg-muted ${isSelected ? "bg-muted" : ""}`}
+                        className={`w-full text-left p-3 rounded-md flex items-center justify-between gap-5 hover:bg-muted ${isSelected ? "bg-muted" : ""}`}
                       >
                         <div>
-                          <div className="font-medium">{c.nama}</div>
+                          <div className="font-medium line-clamp-1">{c.nama}</div>
                           <div className="text-xs text-muted-foreground">{c.kode} • {c.kelas}</div>
                         </div>
                         <div className="text-xs text-muted-foreground">Sem {c.semester}</div>
@@ -231,11 +231,10 @@ export default function AttendancePage() {
   )
 }
 
-// ---------- SelectWrapper helper (small shadcn-select wrapper) ----------
 function SelectWrapper({ semesters, value, onChange }: { semesters: number[]; value: number | "all"; onChange: (v: number | "all") => void }) {
   return (
     <Select onValueChange={(v) => onChange(v === "all" ? "all" : Number(v))} defaultValue={value === "all" ? "all" : String(value)}>
-      <SelectTrigger className="w-48">
+      <SelectTrigger className="w-full sm:w-48">
         <SelectValue>{value === "all" ? "Semua Semester" : `Semester ${value}`}</SelectValue>
       </SelectTrigger>
       <SelectContent>
