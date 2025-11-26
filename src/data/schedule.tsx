@@ -30,3 +30,16 @@ export const schedule: ScheduleMap = {
         { mataKuliah: "Sistem Operasi", jam: "13.20 - 16.55", dosen: "Hata", lokasi: "GSG204" },
     ],
 };
+
+export const courses = [
+    { id: 1, title: "TI-Matematika Diskrit-TI 1", semester: "Semester 1", dosen: "Dwi" },
+    { id: 2, title: "TI-Bahasa Indonesia-TI 1", semester: "Semester 1", dosen: "Dinda" },
+    { id: 3, title: "TI-Algoritma & Pemrograman-TI 1", semester: "Semester 1", dosen: "Iklima" },
+    { id: 4, title: "TI-Bahasa Inggris untuk TIK 1", semester: "Semester 1", dosen: "Denil" },
+    { id: 5, title: "TI-Organisasi & Arsitektur Komputer", semester: "Semester 1", dosen: "Fajar" },
+    { id: 6, title: "TI-Pendidikan Agama", semester: "Semester 1", dosen: "Melisa" },
+    { id: 7, title: "TI-Pengantar Teknologi Informasi & Komunikasi", semester: "Semester 1", dosen: "Bambang" },
+    { id: 8, title: "TI-Pancasila", semester: "Semester 1", dosen: "Kusnar" },
+    { id: 9, title: "TI-Teknologi Multimedia-TI 1", semester: "Semester 1", dosen: "Mera" },
+    { id: 10, title: "TI-Sistem Operasi-TI 1", semester: "Semester 1", dosen: "Hata" },
+];

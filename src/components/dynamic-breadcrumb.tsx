@@ -6,7 +6,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { jurusanMap, prodiMap } from "@/lib/breadcrumbMap";
+import { courseMap, jurusanMap, prodiMap } from "@/lib/breadcrumbMap";
 import { Link } from "react-router-dom";
 
 const DynamicBreadcrumb = () => {
@@ -20,13 +20,19 @@ const DynamicBreadcrumb = () => {
             return jurusanMap[seg] ?? "Jurusan";
         }
 
-        // Segment 2 = ID Prodi
         if (segments[0] === "enroll-course" && index === 2) {
             const jurusanId = segments[1];
             return prodiMap[jurusanId]?.[seg] ?? "Program Studi";
         }
 
-        // Default format
+        if (segments[0] === "my-course" && index === 1) {
+            return courseMap[seg] ?? "Mata Kuliah";
+        }
+
+        if (segments[0] === "my-course" && index === 1) {
+            return courseMap[seg] ?? "Mata Kuliah";
+        }
+                
         return seg
             .replace(/-/g, " ")
             .replace(/\b\w/g, (c) => c.toUpperCase());

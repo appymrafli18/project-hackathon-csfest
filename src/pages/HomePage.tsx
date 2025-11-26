@@ -4,7 +4,7 @@ import CourseCategory from "@/components/course-category"
 import { CourseList } from "@/components/course-list"
 import EventsComponent from "@/components/event-component"
 import TodayShedule from "@/components/today-shedule"
-import TaskCard, { type TaskItem } from "@/components/task-card"
+import TaskCard from "@/components/task-card"
 import { Button } from "@/components/ui/button"
 import { announcements } from "@/data/announcment"
 import MainLayout from "@/layouts/MainLayout"
@@ -21,26 +21,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
+import { assignments } from "@/data/assignment"
 
 const NewHomePage = () => {
-  const tasks: TaskItem[] = [
-    {
-      title: "Laporan Praktikum Sistem Operasi",
-      matkul: "Sistem Operasi",
-      date: "Besok, 23 Nov 2025",
-    },
-    {
-      title: "Quiz Basis Data - Chapter 5",
-      matkul: "Basis Data",
-      date: "24 Nov 2025",
-    },
-    {
-      title: "Project Website E-Commerce",
-      matkul: "Pemrograman Web",
-      date: "28 Nov 2025",
-    },
-  ];
-
   interface AttendanceStatus {
     valid: boolean;
     message: string;
@@ -98,7 +81,7 @@ const NewHomePage = () => {
 
             <div className="space-y-4">
               <h1 className="text-xl font-semibold">Tugas Deadline Terdekat</h1>
-              <TaskCard task={tasks[0]} />
+              <TaskCard task={assignments[0]} />
             </div>
 
             <TodayShedule />
@@ -106,7 +89,7 @@ const NewHomePage = () => {
             <div className="space-y-4">
               <h1 className="text-xl font-semibold">Tugas yang belum selesai</h1>
               <div>
-                {tasks.slice(1).map((task, i) => (
+                {assignments.slice(1, 4).map((task, i) => (
                   <TaskCard key={i} task={task} />
                 ))}
               </div>

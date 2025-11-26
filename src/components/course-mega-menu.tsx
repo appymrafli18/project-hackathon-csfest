@@ -53,9 +53,10 @@ export function CourseMegaMenu({ initialCourses }: { initialCourses: Course[] })
       <div className="relative">
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="flex items-center gap-1 hover:text-gray-300 transition cursor-pointer lg"
+          className="w-full flex justify-between items-center gap-1 hover:text-gray-300 transition cursor-pointer lg"
         >
-          Courses <ChevronDown className="h-4 w-4" />
+          Courses 
+          <ChevronDown className="h-5 w-5" />
         </button>
 
         {mobileOpen && (

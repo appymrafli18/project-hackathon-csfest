@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -8,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Clock, Users, CalendarCheck } from "lucide-react";
 import MainLayout from "@/layouts/MainLayout";
 
-// 1. Update Tipe Data: Hapus 'booked'
 interface Room {
   id: number;
   name: string;
@@ -17,7 +14,6 @@ interface Room {
   until?: string;
 }
 
-// 2. Data Awal (Initial State)
 const INITIAL_ROOMS: Room[] = [
   { id: 1, name: "Ruang Diskusi A", capacity: 6, status: "kosong" },
   { id: 2, name: "Ruang Diskusi B", capacity: 4, status: "kosong" }, // Ubah booked jadi kosong untuk demo
@@ -26,31 +22,26 @@ const INITIAL_ROOMS: Room[] = [
 ];
 
 export default function LibraryRoomBooking() {
-  // 3. Gunakan useState untuk daftar ruangan agar bisa di-update
   const [rooms, setRooms] = useState<Room[]>(INITIAL_ROOMS);
   
   const [open, setOpen] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
   
-  // State untuk form booking
   const [start, setStart] = useState("12:00");
   const [end, setEnd] = useState("14:00");
 
-  // Buka modal hanya jika ruangan kosong
   const openBooking = (room: Room) => {
     if (room.status !== "kosong") return;
 
     setSelectedRoom(room);
-    setStart("12:00"); // Reset waktu default saat buka modal baru
+    setStart("12:00");
     setEnd("14:00");
     setOpen(true);
   };
 
-  // 4. Fungsi Utama: Menangani Konfirmasi Booking
   const handleConfirmBooking = () => {
     if (!selectedRoom) return;
 
-    // Update status ruangan di dalam state list rooms
     setRooms((prevRooms) =>
       prevRooms.map((room) =>
         room.id === selectedRoom.id
@@ -59,14 +50,13 @@ export default function LibraryRoomBooking() {
       )
     );
 
-    // Tutup modal dan reset selection
     setOpen(false);
     setSelectedRoom(null);
   };
 
   return (
     <MainLayout>
-      <div className="p-6 max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <h1 className="text-3xl font-bold mb-6 text-gray-800">Sewa Ruangan Perpustakaan PNJ</h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

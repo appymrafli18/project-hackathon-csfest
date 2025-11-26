@@ -1,5 +1,3 @@
-"use client";
-
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import { Globe, Bell, ChevronDown, LogOut, Menu, X, User, Library } from "lucide-react";
 
@@ -54,7 +52,7 @@ export default function Navbar() {
             <CourseMegaMenu initialCourses={initialCourses} />
             <Link to="/tasks" className="hover:text-gray-300">Tugas</Link>
             <Link to="/attendance" className="hover:text-gray-300">Presensi</Link>
-            <Link to="/grade" className="hover:text-gray-300">Grade</Link>
+            <Link to="/grade" className="hover:text-gray-300">Rekap Nilai</Link>
           </div>
         </div>
 
@@ -103,7 +101,9 @@ export default function Navbar() {
             <DropdownMenuTrigger className="cursor-pointer">
               {user ?
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-white"></div>
+                  <div className="w-9 h-9 rounded-full bg-white">
+                    <User className="w-full h-full text-gray-300" />
+                  </div>
                   <div className="leading-tight text-sm text-left">
                     <p className="font-semibold">{user.name}</p>
                     <p className="text-gray-300 text-xs">{user.nim}</p>
@@ -142,7 +142,7 @@ export default function Navbar() {
 
         {/* MOBILE HAMBURGER */}
         <button
-          className="lg:hidden p-2"
+          className="lg:hidden p-2 cursor-pointer"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X size={26} /> : <Menu size={26} />}
@@ -157,7 +157,7 @@ export default function Navbar() {
           <CourseMegaMenu initialCourses={initialCourses} />
           <Link to="/tasks" className="block py-2">Tugas</Link>
           <Link to="/attendance" className="block py-2">Presensi</Link>
-          <Link to="/grade" className="block py-2">Grade</Link>
+          <Link to="/grade" className="block py-2">Rekap Nilai</Link>
 
           <hr className="border-teal-700" />
 
@@ -168,7 +168,9 @@ export default function Navbar() {
 
           {/* PROFILE */}
           <div className="flex items-center gap-3 py-2">
-            <div className="w-9 h-9 rounded-full bg-white"></div>
+            <div className="w-9 h-9 rounded-full bg-white">
+              <User className="w-full h-full text-gray-300" />
+            </div>
             <div className="leading-tight text-sm">
               {user ?
                 <>
